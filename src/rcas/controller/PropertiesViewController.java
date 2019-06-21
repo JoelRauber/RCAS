@@ -1,20 +1,33 @@
 package rcas.controller;
 
+import java.io.IOException;
 import java.util.Iterator;
 import java.util.ResourceBundle;
 
 import javafx.collections.ObservableList;
+import javafx.event.ActionEvent;
+import javafx.event.Event;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Scene;
 import javafx.scene.chart.LineChart;
 import javafx.scene.chart.XYChart.Series;
 import javafx.scene.layout.GridPane;
+import javafx.scene.layout.Pane;
+import javafx.stage.Stage;
 import rcas.model.MagicFormulaTireModel;
 import rcas.model.RaceCar;
 import rcas.model.TireModel;
 import rcas.util.CorneringAnalyserUtil;
+import rcas.util.Variables;
 
-public class RCASMainViewController {
+public class PropertiesViewController {
 
+	public void setPrimaryStage(Stage primaryStage) {
+		this.primaryStage = primaryStage;
+	}
+
+	private Stage primaryStage;
 	@FXML
 	private GridPane mainPane;
 	@FXML
@@ -78,5 +91,34 @@ public class RCASMainViewController {
 				util.getMMMControlValue(raceCar, 0.0, 0.0, 10.0), util.getMMMControlValue(raceCar, -5.0, 20.0, 30.0),
 				util.getMMMStabilityValue(raceCar, 0.0, 0.0, 1.0),
 				util.getMMMStabilityValue(raceCar, 20.0, -5.0, -4.0)));
+	}
+
+	@FXML
+	private void changeToCarView(ActionEvent event) throws IOException {
+		FXMLLoader fxml = FXMLLoader.load(getClass().getResource("Car.fxml"));
+		Pane mainPane = fxml.load();
+		Scene mainScene = new Scene(mainPane, 1500, 800);
+		Variables.scene = mainScene;
+	}
+
+	@FXML
+	 void changeToTopView(ActionEvent event) throws IOException {
+
+		System.out.println("gay");
+		/**
+		FXMLLoader fxml = FXMLLoader.load(getClass().getResource("Car.fxml"));
+		Pane mainPane = fxml.load();
+		Scene mainScene = new Scene(mainPane, 1500, 800);
+		primaryStage.setScene(mainScene);
+		primaryStage.show();
+		Variables.scene = mainScene;
+		 **/
+	}
+
+	@FXML
+	private void changeToPropertiesView(ActionEvent event){
+
+
+
 	}
 }
